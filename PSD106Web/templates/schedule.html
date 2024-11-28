@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% block content %}
+<h2>未來兩週時段表</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>日期</th>
+            {% for slot in time_slots %}
+                <th>{{ slot }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for day in schedule %}
+        <tr>
+            <td>{{ day.date }}</td>
+            {% for slot in day.slots %}
+            <td>
+                {% if slot.reservation %}
+                    已預約：{{ slot.reservation.reserver_name }}
+                {% else %}
+                    <a href="{% url 'reserve_slot' date=day.date time_slot=slot.time_slot %}">預約</a>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

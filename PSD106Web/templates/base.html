@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} <!-- 加入這行 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}聲學場地預約管理系統{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>聲學場地預約管理系統</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'homepage' %}">工106電聲空間借用規則</a></li>
+                <li><a href="/appointment">查看時段與預約</a></li>
+                <li><a href="#">聯絡方式</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 聲學場地預約管理系統</p>
+    </footer>
+</body>
+</html>
